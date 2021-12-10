@@ -15,6 +15,9 @@
       "pre-commit": "npm format && git add -A ."
     }
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/coderbiceps619/testpart1.git"
