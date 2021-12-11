@@ -41,6 +41,24 @@ class User {
       }
     });
   }
+  static findAll() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const dataContent = await asyncfs.readFile(databasePath);
+        const mappedDataContent = JSON.parse(dataContent).map((user) => {
+          return {
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            id: user.id,
+          };
+        });
+        resolve(mappedDataContent);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
 
   save() {
     return new Promise((resolve, reject) => {

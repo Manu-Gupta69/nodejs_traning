@@ -22,19 +22,31 @@ exports.postSignup = async (req, res, next) => {
 
 exports.postLogin = async (req, res, next) => {
   const data = req.body;
-  const user = await User.findOne("email", data.email);
-  if (user !== null) {
-    const result = await bcrypt.compare(data.password, user.password);
-    if (!result) {
-      res.json({ err: "Invalid Email Or Password", data: null });
+  try {
+    await authSchema.loginSchema.validateAsync(data);
+    const user = await User.findOne("email", data.email);
+    if (user !== null) {
+      const result = await bcrypt.compare(data.password, user.password);
+      if (!result) {
+        res.json({ err: "Invalid Email Or Password", data: null });
+        return;
+      }
+      const token = User.getToken(user.id);
+      res
+        .header("x-auth-token", token)
+        .status(200)
+        .json({ err: null, data: "user LoggedIn successfully" });
       return;
     }
-    const token = User.getToken(user.id);
-    res
-      .header("x-auth-token", token)
-      .status(200)
-      .json({ err: null, data: "user LoggedIn successfully" });
-    return;
+    res.json({ err: "Invalid Email Or Password", data: null });
+  } catch (err) {
+    res.json({ err: err.details[0].message });
   }
-  res.json({ err: "Invalid Email Or Password", data: null });
+};
+
+exports.getTable = async (req, res, next) => {
+  const user = await User.findOne("id", req.user._id);
+  console.log("singlewithtoken", user);
+  const allUsers = await User.findAll();
+  res.json({ err: null, data: allUsers });
 };
