@@ -1,23 +1,10 @@
 [
   {
-    "username": "coderbiceps",
-    "name": "Manu gupta",
-    "password": "Bhook@sher1",
-    "email": "magggng@gmail.com",
+    "username": "coderbolte",
+    "name": "coder bolte",
+    "password": "$2a$12$Q6ZY7tKANA6EuHzeDu8IuOuaea4g/Pp4PlRJ2coDPa1X8VatLyVCG",
+    "email": "mang123@gmail.com",
+    "createdAt": "2021-12-11T13:29:46.543Z",
     "id": 0
-  },
-  {
-    "username": "coderbiceps",
-    "name": "Manu gupta",
-    "password": "Bhook@sher1",
-    "email": "magggggng@gmail.com",
-    "id": 1
-  },
-  {
-    "username": "coderbiceps",
-    "name": "Manu gupta",
-    "password": "$2a$12$XB45Eb.nES195k9U9RLLeuKiO62Y8PbxhH/SvbytV80eITqIN/sIC",
-    "email": "maggggggggng@gmail.com",
-    "id": 2
   }
 ]
