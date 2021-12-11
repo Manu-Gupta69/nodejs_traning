@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "nodemon app.js",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node app.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "pretty-quick": "^3.1.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "joi": "^17.5.0"
   }
 }
