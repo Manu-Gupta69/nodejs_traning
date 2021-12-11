@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const asyncfs = require("fs/promises");
 const databasePath = path.join(__dirname, "..", "database", "data.json");
+const jwt = require("jsonwebtoken");
 
 class User {
   constructor(username, name, password, email) {
@@ -67,6 +68,10 @@ class User {
         }
       });
     });
+  }
+
+  static getToken(id) {
+    return jwt.sign({ _id: id }, "mylongseceretestring");
   }
 }
 
