@@ -5,18 +5,23 @@ const bcrypt = require("bcryptjs");
 exports.postSignup = async (req, res, next) => {
   try {
     const data = req.body;
+    console.log("data ->", data);
     await authSchema.signupSchema.validateAsync(data);
     const hashedPassword = await bcrypt.hash(data.password, 12);
     const user = new User(data.username, data.name, hashedPassword, data.email);
     await user.save();
     const token = User.getToken(user.id);
+    console.log("usertoken ->", token);
     res
-      .header("x-auth-token", token)
-      .status(200)
-      .json({ err: null, data: "user created successfully" });
+      .header("X-AUTH-TOKEN", token)
+      .status(201)
+      .json({ err: null, data: user });
+    console.log("returning");
+    return;
   } catch (err) {
-    console.log(err);
+    console.log("err->", err);
     res.status(400).json({ err, data: null });
+    return;
   }
 };
 
@@ -33,13 +38,15 @@ exports.postLogin = async (req, res, next) => {
       }
       const token = User.getToken(user.id);
       res
-        .header("x-auth-token", token)
+        .header("X-AUTH-TOKEN", token)
         .status(200)
         .json({ err: null, data: "user LoggedIn successfully" });
       return;
     }
     res.json({ err: "Invalid Email Or Password", data: null });
+    return;
   } catch (err) {
+    console.log(err);
     res.json({ err: err.details[0].message });
   }
 };

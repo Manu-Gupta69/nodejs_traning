@@ -73,7 +73,7 @@ class User {
         } else {
           content = JSON.parse(filecontent);
           const result = await User.findOne("email", this.email);
-          console.log(result);
+          console.log("result in save ->", result);
           if (result !== null) {
             reject("User Already Exits");
             return;
