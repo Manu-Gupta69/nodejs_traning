@@ -4,8 +4,52 @@ const realname = document.getElementById('name');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
+const redirect = document.getElementById('rbtn');
+
+redirect.addEventListener('click', () =>
+  window.location.replace('http://127.0.0.1:5500/login.html')
+);
 const finalCheckobj = {};
+
 form.addEventListener('submit', (e) => {
+  // fetch('http://localhost:3000/api/auth/signup', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     name: 'manu',
+  //     confirm: 'Loltroll@123',
+  //     username: 'coder',
+  //     password: 'Loltroll@123',
+  //     email: `manugupta${Math.floor(Math.random() * 1000)}@gmail.com`,
+  //   }),
+  // })
+  //   .then(async (res) => {
+  //     localStorage.setItem('X-AUTH-TOKEN', res.headers.get('X-AUTH-TOKEN'));
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((err) => console.log(err));
+
+  //   fetch('http://localhost:3000/api/auth/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       email: 'gupta.nikhil400@gmail.com',
+  //       password: 'Loltroll@123',
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => console.log(err));
+
   e.preventDefault();
   checkInputs();
   const formValues = Object.values(finalCheckobj);
@@ -30,15 +74,20 @@ form.addEventListener('submit', (e) => {
         email: email.value,
       }),
     })
-      .then((res) => res.json())
+      .then(async (res) => {
+        localStorage.setItem('X-AUTH-TOKEN', res.headers.get('X-AUTH-TOKEN'));
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
+        window.location.replace('http://127.0.0.1:5500/profile.html');
       })
       .catch((err) => console.log(err));
   }
 });
 
 function checkInputs() {
+  // trim to remove the whitespaces
   const usernameValue = username.value.trim();
   const nameValue = realname.value.trim();
   const emailValue = email.value.trim();
