@@ -1,0 +1,146 @@
+[
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$UZMhbz8S33IAPdBny3ofQ.vjwzPWjcWdHWVZ4wSPNkzEj0/F0Euq6",
+    "email": "manugupta299@gmail.com",
+    "createdAt": "2021-12-12T21:07:00.669Z",
+    "id": 0
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$mAX4s/6TmU3AzmdIdW9ugOmfLbry9AGn2MHgYZdIZfEfeOxExQHXC",
+    "email": "manugupta504@gmail.com",
+    "createdAt": "2021-12-12T21:07:02.601Z",
+    "id": 1
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$cSYHoEGc.xAQZkPDKOaxLeTOfBGB9QTvhUnVzY1iYDib6UFl2xWUi",
+    "email": "manugupta450@gmail.com",
+    "createdAt": "2021-12-12T21:07:04.004Z",
+    "id": 2
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$5AWtIwZOLzwINk/r4cLkTuLRgSs.vTHG5LS2hafUA/C2QTlnA/dT6",
+    "email": "manugupta704@gmail.com",
+    "createdAt": "2021-12-12T21:07:05.450Z",
+    "id": 3
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$OpCNOEQvoUVyJRTXWkX2uOV5rWDz7YLxAUltIINZSDCF2dnbBz9SS",
+    "email": "manugupta347@gmail.com",
+    "createdAt": "2021-12-12T21:07:06.839Z",
+    "id": 4
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$Nm46GeLgaMEWsYUSME3PnOZbrek26hxdQfddN49NDxQV1Dzoe1Mem",
+    "email": "manugupta275@gmail.com",
+    "createdAt": "2021-12-12T21:07:08.405Z",
+    "id": 5
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$aqM/SDheQfuVyt7mhczxu.tIjwsGoh9a7ZP.QavxgIe3ZG6zskyMS",
+    "email": "manugupta186@gmail.com",
+    "createdAt": "2021-12-12T21:07:09.808Z",
+    "id": 6
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$KqLMEyaWidvnm8BxNv6sDOeaUgo3BDv9ly0aZ1/8kb2gTJuZXklFq",
+    "email": "manugupta616@gmail.com",
+    "createdAt": "2021-12-12T21:07:11.343Z",
+    "id": 7
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$1Zof8UFU1GN1IGnO0gKwfOJo5K6ApMYR7T9E4wczb37A5rKpzjNoe",
+    "email": "manugupta307@gmail.com",
+    "createdAt": "2021-12-12T21:07:13.086Z",
+    "id": 8
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$4luF.F9.djZ1qr2994RBUuokLJpy1LkWcizsY.Oi3b1m2pwqSxAPG",
+    "email": "manugupta699@gmail.com",
+    "createdAt": "2021-12-12T21:07:14.564Z",
+    "id": 9
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$hGcpJJzydWTxL.n71iUJ8O.ZCeb8cZRSj5qStGhCGLIb2qoMtN/G.",
+    "email": "manugupta823@gmail.com",
+    "createdAt": "2021-12-12T21:07:16.364Z",
+    "id": 10
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$pP8RMzUdQ4az4CfL0hZ5dOZyA.aAyyyF5ztqBfzVcYNWucBe1mIZS",
+    "email": "manugupta371@gmail.com",
+    "createdAt": "2021-12-12T21:07:17.819Z",
+    "id": 11
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$i7pktaHPA624kVF23qeKc.HhVbV7Z./APc6/vCIKENjC8qeDPvNo2",
+    "email": "manugupta847@gmail.com",
+    "createdAt": "2021-12-12T21:07:19.641Z",
+    "id": 12
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$SF/I.zeCM.pLK7bbMinAaOj4UiuxLkYAl1yinG9D5kiTRVnR7OimG",
+    "email": "manugupta661@gmail.com",
+    "createdAt": "2021-12-12T21:08:03.927Z",
+    "id": 13
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$EfTNlRFLzLBFaqtEDWiyseIinxqxOMahfTnPYzhQ7/tOzXqgPLuly",
+    "email": "manugupta254@gmail.com",
+    "createdAt": "2021-12-12T21:08:05.407Z",
+    "id": 14
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$IVp3DfrVEHN5rpSRItEUxe0zDpP22MgrFy6GwaYAwdxhqfoB6VPRm",
+    "email": "manugupta327@gmail.com",
+    "createdAt": "2021-12-12T21:26:00.236Z",
+    "id": 15
+  },
+  {
+    "username": "coder",
+    "name": "manu",
+    "password": "$2a$12$jzC22/4/x2GCGHVpW14/LedzcPv9GFf7Xki8rZpssVRFnk1V1PTbu",
+    "email": "manugupta309@gmail.com",
+    "createdAt": "2021-12-12T21:44:39.807Z",
+    "id": 16
+  },
+  {
+    "username": "coder_biceps",
+    "name": "Manu",
+    "password": "$2a$12$VdzBf5.Xc5EiPStLX1h5n.3WjlBIT/aLlQMFR7xjsiAgu.WxgO21m",
+    "email": "besthacker428@gmail.com",
+    "createdAt": "2021-12-12T21:49:22.107Z",
+    "id": 17
+  }
+]
