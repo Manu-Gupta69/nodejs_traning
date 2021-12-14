@@ -3,6 +3,7 @@ const path = require("path");
 const asyncfs = require("fs/promises");
 const databasePath = path.join(__dirname, "..", "database", "data.json");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv").config();
 
 class User {
   constructor(username, name, password, email) {
@@ -66,31 +67,36 @@ class User {
       let content = [];
       this.id = content.length;
       fs.readFile(databasePath, async (err, filecontent) => {
-        if (err) {
-          content.push(this);
-          this.writeFile(databasePath, content)
-            .then((filecontent) => resolve(filecontent))
-            .catch((err) => reject(err));
-        } else {
-          content = JSON.parse(filecontent);
-          const result = await User.findOne("email", this.email);
-          console.log("result in save ->", result);
-          if (result !== null) {
-            reject("User Already Exits");
-            return;
+        try {
+          if (err) {
+            content.push(this);
+            this.writeFile(databasePath, content)
+              .then((filecontent) => resolve(filecontent))
+              .catch((err) => reject(err));
+          } else {
+            content = JSON.parse(filecontent);
+            const result = await User.findOne("email", this.email);
+
+            if (result !== null) {
+              reject("User Already Exits");
+              return;
+            }
+
+            this.id = content.length;
+            content.push(this);
+
+            const filedata = await this.writeFile(databasePath, content);
+            resolve(filedata);
           }
-          this.id = content.length;
-          content.push(this);
-          this.writeFile(databasePath, content)
-            .then((filecontent) => resolve(filecontent))
-            .catch((err) => reject(err));
+        } catch (err) {
+          reject(err);
         }
       });
     });
   }
 
   static getToken(id) {
-    return jwt.sign({ _id: id }, "mylongseceretestring");
+    return jwt.sign({ _id: id }, process.env.SECRET);
   }
 }
 
