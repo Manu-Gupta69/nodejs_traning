@@ -1,5 +1,7 @@
 const { signupSchema, loginSchema } = require("../util/authSchema");
 const User = require("../model/user");
+const getToken = require("../util/token");
+
 const bcrypt = require("bcryptjs");
 
 const signup = async (req, res, next) => {
@@ -7,14 +9,20 @@ const signup = async (req, res, next) => {
     const data = req.body;
     await signupSchema.validateAsync(data);
     const hashedPassword = await bcrypt.hash(data.password, 12);
-    const user = new User(data.username, data.name, hashedPassword, data.email);
-    await user.save();
-    const token = User.getToken(user.id);
+
+    const user = await User.create({
+      username: data.username,
+      name: data.name,
+      email: data.email,
+      password: hashedPassword,
+    });
+
+    const token = getToken(user.dataValues.id);
 
     res
       .header("X-AUTH-TOKEN", token)
       .status(201)
-      .json({ err: null, data: user });
+      .json({ err: null, data: "User created successfully" });
     return;
   } catch (err) {
     res.status(400).json({ err, data: null });
@@ -27,16 +35,20 @@ const login = async (req, res, next) => {
 
   try {
     await loginSchema.validateAsync(data);
-    const user = await User.findOne("email", data.email);
+    const user = await User.findOne({ where: { email: data.email } });
 
-    if (user !== null) {
-      const result = await bcrypt.compare(data.password, user.password);
+    if (user) {
+      const result = await bcrypt.compare(
+        data.password,
+        user.dataValues.password
+      );
       if (!result) {
         res.json({ err: "Invalid email or password", data: null });
         return;
       }
 
-      const token = User.getToken(user.id);
+      const token = getToken(user.dataValues.id);
+
       res
         .header("X-AUTH-TOKEN", token)
         .status(200)
@@ -47,8 +59,7 @@ const login = async (req, res, next) => {
     res.json({ err: "Invalid email or password", data: null });
     return;
   } catch (err) {
-    console.log(err);
-    res.json({ err: err.details[0].message, data: null });
+    res.json({ err, data: null });
   }
 };
 
