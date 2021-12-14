@@ -30,20 +30,23 @@ exports.postLogin = async (req, res, next) => {
   try {
     await authSchema.loginSchema.validateAsync(data);
     const user = await User.findOne("email", data.email);
+
     if (user !== null) {
       const result = await bcrypt.compare(data.password, user.password);
       if (!result) {
         res.json({ err: "Invalid Email Or Password", data: null });
         return;
       }
+
       const token = User.getToken(user.id);
       res
         .header("X-AUTH-TOKEN", token)
         .status(200)
-        .json({ err: null, data: "user LoggedIn successfully" });
+        .json({ err: null, data: "user LoggedIn successfully" }); //to be changed
       return;
     }
-    res.json({ err: "Invalid Email Or Password", data: null });
+
+    res.json({ err: "Invalid email or password", data: null }); // follow same naming convention
     return;
   } catch (err) {
     console.log(err);
@@ -52,6 +55,7 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.getTable = async (req, res, next) => {
+  //try catch with await //npm await of package
   const user = await User.findOne("id", req.user._id);
   console.log("singlewithtoken", user);
   const allUsers = await User.findAll();

@@ -142,5 +142,13 @@
     "email": "besthacker428@gmail.com",
     "createdAt": "2021-12-12T21:49:22.107Z",
     "id": 17
+  },
+  {
+    "username": "coder_biceps",
+    "name": "Manu",
+    "password": "$2a$12$ih9o6DUB2kDcvvadNO/rOemp013dmR/67HWc9/N5pCBog0OezY3Iu",
+    "email": "manugupta6343519@gmail.com",
+    "createdAt": "2021-12-14T10:21:10.808Z",
+    "id": 18
   }
 ]

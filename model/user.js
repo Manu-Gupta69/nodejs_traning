@@ -41,6 +41,7 @@ class User {
       }
     });
   }
+
   static findAll() {
     return new Promise(async (resolve, reject) => {
       try {
