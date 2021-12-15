@@ -3,6 +3,13 @@ const User = require("../model/user");
 const getToken = require("../util/token");
 
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
+
+const getSignup = (req, res, next) => {
+  const message = req.flash("error")[0];
+
+  res.render("signup", { error: message });
+};
 
 const signup = async (req, res, next) => {
   try {
@@ -15,19 +22,24 @@ const signup = async (req, res, next) => {
       name: data.name,
       email: data.email,
       password: hashedPassword,
+      providerid: null,
     });
 
-    const token = getToken(user.dataValues.id);
-
-    res
-      .header("X-AUTH-TOKEN", token)
-      .status(201)
-      .json({ err: null, data: "User created successfully" });
-    return;
+    req.session.userid = user.dataValues.id;
+    res.redirect("/api/auth/signup");
   } catch (err) {
-    res.status(400).json({ err, data: null });
+    if (err.hasOwnProperty("details")) {
+      req.flash("error", err.details[0].message);
+    }
+    res.redirect("/api/auth/signup");
     return;
   }
+};
+
+const getLogin = (req, res, next) => {
+  const message = req.flash("error")[0];
+
+  res.render("login", { error: message });
 };
 
 const login = async (req, res, next) => {
@@ -43,23 +55,17 @@ const login = async (req, res, next) => {
         user.dataValues.password
       );
       if (!result) {
-        res.json({ err: "Invalid email or password", data: null });
+        req.flash("error", "Invalid email or password");
+        res.redirect("/login");
         return;
       }
-
-      const token = getToken(user.dataValues.id);
-
-      res
-        .header("X-AUTH-TOKEN", token)
-        .status(200)
-        .json({ err: null, data: "user loggedin successfully" });
+      req.session.userid = user.dataValues.id;
+      res.redirect("/api/auth/table");
       return;
     }
-
-    res.json({ err: "Invalid email or password", data: null });
-    return;
   } catch (err) {
-    res.json({ err, data: null });
+    req.flash("error", "Invalid email or password");
+    res.redirect("/api/auth/login");
   }
 };
 
@@ -67,14 +73,27 @@ const table = async (req, res, next) => {
   try {
     const allUsers = await User.findAll();
 
-    res.json({ err: null, data: allUsers });
+    res.render("profile", { users: allUsers });
   } catch (err) {
-    res.json({ err: err, data: null });
+    res.redirect("/");
   }
+};
+
+const logout = (req, res, next) => {
+  req.session = null;
+  res.redirect("/api/auth/login");
+};
+
+const googleRedirect = (req, res, next) => {
+  res.redirect("/api/auth/table");
 };
 
 module.exports = {
   login,
   signup,
   table,
+  getSignup,
+  googleRedirect,
+  getLogin,
+  logout,
 };
