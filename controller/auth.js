@@ -1,6 +1,5 @@
 const { signupSchema, loginSchema } = require("../util/authSchema");
 const User = require("../model/user");
-const getToken = require("../util/token");
 
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
