@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
+    <title>LOG IN</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Log In</h2>
+        </div>
+        <form id="form" method="post" action="/api/auth/login" class="form" novalidate>
+            <% if(error) { %>
+                <h2><%= error %></h2>
+                <% } %>
+            <div class="form-control">
+                <label for="username">Email</label>
+                <input type="email" name="email" placeholder="a@florin-pop.com" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="form-control">
+                <label for="username">Password</label>
+                <input type="password" name="password" placeholder="Password" id="password"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <button type="submit">Submit</button>
+            <a href="/api/auth/signup" >Don't have an account? Sign up</a><br>
+            <a href="/api/auth/google" >Login with google</a><br>
+            <a href="/api/auth/facebook" >Login with facebook</a><br>
+
+        </form>
+    </div>
+    <!-- <script src="/js/login.js"></script> -->
+</body>
+</html>
