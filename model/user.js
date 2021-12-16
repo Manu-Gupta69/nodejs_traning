@@ -22,7 +22,7 @@ const User = sequelize.define("user", {
     allowNull: true,
   },
   providerid: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(1234),
     allowNull: true,
   },
   password: {

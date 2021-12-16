@@ -39,6 +39,11 @@ const signup = async (req, res, next) => {
 const getLogin = (req, res, next) => {
   const message = req.flash("error")[0];
 
+  if (req.user) {
+    res.redirect("/api/auth/table");
+    return;
+  }
+
   res.render("login", { error: message });
 };
 
@@ -85,6 +90,7 @@ const logout = (req, res, next) => {
 };
 
 const googleRedirect = (req, res, next) => {
+  if (req.isAuthenticated()) return res.redirect("/api/auth/login");
   res.redirect("/api/auth/table");
 };
 

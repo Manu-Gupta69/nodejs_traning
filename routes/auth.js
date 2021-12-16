@@ -16,12 +16,20 @@ router.get(
 );
 router.get(
   "/redirect",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", { failureRedirect: "/api/auth/getLogin" }),
   authController.googleRedirect
 );
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["profile", "email"] })
+  passport.authenticate("facebook", { scope: ["email"] })
+);
+router.get(
+  "/facebook/redirect",
+  passport.authenticate("facebook", {
+    failureRedirect: "/api/auth/getLogin",
+    failureFlash: true,
+  }),
+  authController.googleRedirect
 );
 
 module.exports = router;

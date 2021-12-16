@@ -9,14 +9,16 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findOne({ where: { id: id } });
+  try {
+    const user = await User.findOne({ where: { id: id } });
 
-  if (user) {
-    done(null, user);
-    return;
+    if (user) {
+      done(null, user);
+      return;
+    }
+  } catch (err) {
+    done(err, null);
   }
-
-  done(null, null);
 });
 
 passport.use(
@@ -30,14 +32,14 @@ passport.use(
       try {
         const googleid = profile.id.toString();
         const user = await User.findOne({ where: { providerid: googleid } });
-        console.log(profile);
+
         if (!user) {
           const newUser = await User.create({
             username: profile.displayName,
             name: profile.displayName,
             email: profile.emails[0].value,
             password: null,
-            providerid: profile.id,
+            providerid: googleid,
           });
 
           callback(null, newUser.dataValues);
@@ -45,7 +47,7 @@ passport.use(
           callback(null, user.dataValues);
         }
       } catch (err) {
-        callback(err, null);
+        callback(err);
       }
     }
   )
