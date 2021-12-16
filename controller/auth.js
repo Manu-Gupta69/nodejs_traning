@@ -89,7 +89,6 @@ const logout = (req, res, next) => {
 };
 
 const googleRedirect = (req, res, next) => {
-  if (req.isAuthenticated()) return res.redirect("/api/auth/login");
   res.redirect("/api/auth/table");
 };
 
