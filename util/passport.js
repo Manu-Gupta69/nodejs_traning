@@ -5,6 +5,7 @@ const dotenv = require("dotenv").config();
 const User = require("../model/user");
 
 passport.serializeUser((user, done) => {
+  console.log("reached");
   done(null, user.id);
 });
 
@@ -47,7 +48,7 @@ passport.use(
           callback(null, user.dataValues);
         }
       } catch (err) {
-        callback(err);
+        callback(null, false);
       }
     }
   )

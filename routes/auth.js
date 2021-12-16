@@ -26,7 +26,7 @@ router.get(
 router.get(
   "/facebook/redirect",
   passport.authenticate("facebook", {
-    failureRedirect: "/api/auth/login",
+    failureRedirect: "/api/auth/signup",
     failureFlash: true,
   }),
   authController.googleRedirect
