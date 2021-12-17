@@ -11,7 +11,9 @@ const authRoutes = require("./routes/auth");
 const sequelize = require("./database/database");
 const intalizepassport = require("./util/passport");
 const intalizefacebook = require("./util/facebook");
+const getUser = require("./util/getUser");
 const User = require("./model/user");
+const { notFound, serverError } = require("./controller/error");
 
 const app = express();
 
@@ -30,25 +32,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use(async (req, res, next) => {
-  try {
-    if (req.session.userid) {
-      const user = await User.findOne({ where: { id: req.session.userid } });
-      req.user = user;
-    }
-    next();
-  } catch (err) {
-    next();
-  }
-});
+app.use(getUser);
 
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/auth", authRoutes);
-app.use("/", (req, res, next) => {
-  res.render("error");
+app.use("/", notFound);
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.render("505");
 });
-
 const port = process.env.PORT || 5000;
 
 (async function () {

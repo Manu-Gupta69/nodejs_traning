@@ -5,7 +5,6 @@ const dotenv = require("dotenv").config();
 const User = require("../model/user");
 
 passport.serializeUser((user, done) => {
-  console.log("reached");
   done(null, user.id);
 });
 
@@ -27,7 +26,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/api/auth/redirect",
+      callbackURL: `${process.env.DOMAIN}/api/auth/redirect`,
     },
     async (accessToken, refreshToken, profile, callback) => {
       try {
