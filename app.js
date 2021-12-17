@@ -30,6 +30,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(flash());
 
 app.use(getUser);
@@ -37,11 +38,10 @@ app.use(getUser);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/auth", authRoutes);
+
 app.use("/", notFound);
-app.use((err, req, res, next) => {
-  console.log(err.stack);
-  res.render("505");
-});
+app.use(serverError);
+
 const port = process.env.PORT || 5000;
 
 (async function () {

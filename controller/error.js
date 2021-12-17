@@ -2,7 +2,8 @@ const notFound = (req, res, next) => {
   res.render("404");
 };
 
-const serverError = (req, res, next) => {
+const serverError = (err, req, res, next) => {
+  console.log(err.stack);
   res.render("505");
 };
 
